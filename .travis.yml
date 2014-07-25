@@ -11,12 +11,12 @@ branches:
 matrix:
   fast_finish: true
   allow_failures:
-  - env: BEHAT_PROFILE='osxsafari' START_SAUCE_CONNECT=true TEST_BEHAT=true
+  - env: BEHAT_PROFILE='osxsafari'
   exclude:
   - php: '5.4'
   include:
   - php: '5.4'
-    env: BEHAT_PROFILE='win7ie9' START_SAUCE_CONNECT=true TEST_BEHAT=true
+    env: BEHAT_PROFILE='win7ie9'
 php:
 - '5.4'
 - '5.3'
@@ -25,25 +25,18 @@ env:
   - SAUCE_USERNAME="ilios"
   #SAUCE_ACCESS_KEY
   - secure: TWX+vAZYyU+m4Eur8Eyuo39feAU/8sCVqoW3QLdmP0umGSaOHxrTrQuX4lGNUOV1nLMedAQl/7FVryl4eBJwhth8iQ9xjDIdRCshN+lvQfEGB6D91FrgJ7ZoR/QnKxcHddFzaGXAlglVZE8JT5Ljp36tyKbbNoEt0YBgwSnYxW0=
-  - START_LOCAL_SELENIUM=false
-  - START_SAUCE_CONNECT=false
-  - TEST_BEHAT=false
-  - BEHAT_PROFILE=false
 
   matrix:
-  - BEHAT_PROFILE='win7ie9' START_SAUCE_CONNECT=true TEST_BEHAT=true
-  - BEHAT_PROFILE='win8ie11' START_SAUCE_CONNECT=true TEST_BEHAT=true
-  - BEHAT_PROFILE='osxsafari' START_SAUCE_CONNECT=true TEST_BEHAT=true
+  - BEHAT_PROFILE='win7ie9'
+  - BEHAT_PROFILE='win8ie11'
+  - BEHAT_PROFILE='osxsafari'
 addons:
   hosts:
   - precise64
   sauce_connect: true
-before_install:
-- sudo apt-get update -qq
+
 install:
 - composer install  --no-interaction -d ${TRAVIS_BUILD_DIR}
 
 script:
-- if [ "$TEST_BEHAT" = true ]; then (${TRAVIS_BUILD_DIR}/bin/behat -c
-  ${TRAVIS_BUILD_DIR}/behat.yml --profile $BEHAT_PROFILE);
-  fi
+- ${TRAVIS_BUILD_DIR}/bin/behat -c ${TRAVIS_BUILD_DIR}/tests/behat.yml --profile $BEHAT_PROFILE
