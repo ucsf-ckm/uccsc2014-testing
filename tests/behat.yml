@@ -1,0 +1,59 @@
+# Use this profile to run tests on Sauce locally against vagrant
+default:
+    filters:
+        tags: "~@ignore"
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://ucsf-ckm.github.io/uccsc2014-testing/
+            default_session: saucelabs
+            javascript_session: saucelabs
+            saucelabs:
+                browser: "firefox"
+                connect: ~
+                capabilities:
+                    name: "win7ff"
+                    platform: "Windows 7"
+                    version: 29
+
+# Run tests with win7 ie9
+win7ie9:
+    extensions:
+        Behat\MinkExtension\Extension:
+            saucelabs:
+                browser: "internet explorer"
+                capabilities:
+                    name: "win7ie9"
+                    platform: "Windows 7"
+                    version: 9
+
+# Run tests with win8 ie11
+win8ie11:
+    extensions:
+        Behat\MinkExtension\Extension:
+            saucelabs:
+                browser: "internet explorer"
+                capabilities:
+                    name: "win8ie11"
+                    platform: "Windows 8.1"
+                    version: 11
+
+# Run tests with osx firefox
+osxfirefox:
+    extensions:
+        Behat\MinkExtension\Extension:
+            saucelabs:
+                capabilities:
+                    name: "osxfirefox"
+                    platform: "OS X 10.9"
+                    version: 29
+
+# Run tests with osx safari
+osxsafari:
+    extensions:
+        Behat\MinkExtension\Extension:
+            saucelabs:
+                browser: "safari"
+                capabilities:
+                    name: "osxsafari"
+                    platform: "OS X 10.9"
+                    version: 7
