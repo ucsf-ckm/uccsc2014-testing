@@ -1,5 +1,13 @@
 language: php
 services: mysql
+
+#travis usually doesn't build gh-pages branch, but we want it to for testing
+#and since it is a white list we have to also whitelist everythign else
+branches:
+  only:
+    - gh-pages
+    - /^.*$/
+
 matrix:
   fast_finish: true
   allow_failures:
