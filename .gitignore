@@ -1,4 +1,5 @@
 bin
 vendor
 sauce_connect.log
-stylesheets/.sass-cache
+stylesheets/.sass-cachei
+.idea/
