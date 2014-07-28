@@ -104,12 +104,30 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @When /^I press the right"([^"]*)" key$/
+     * @When /^I press the right key$/
      */
-    public function iPressTheKey($key)
+    public function iPressTheRightKey()
     {
-        // @todo implement
-        throw new PendingException();
+        $this->pressKeyOnPage(39);
     }
 
+    /**
+     * @When /^I press the left key$/
+     */
+    public function iPressTheLeftKey()
+    {
+        $this->pressKeyOnPage(37);
+
+    }
+
+    /**
+     * Press a key on the page using jQuery.
+     * @param int $keyCode The code of the key to press.
+     * @link http://stackoverflow.com/a/17521635/307333
+     */
+    private function pressKeyOnPage($keyCode)
+    {
+        $script = "jQuery(document).trigger(jQuery.Event('keydown', { which: ${keyCode}, keyCode: ${keyCode}}));";
+        $this->getSession()->evaluateScript($script);
+    }
 }
