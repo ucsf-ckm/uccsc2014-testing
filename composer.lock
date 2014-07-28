@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "aa607c8b2e9255bd9b1eec97def5c746",
+    "hash": "b4788bff3debb0e272d15b77aa9747e8",
     "packages": [
         {
             "name": "behat/behat",
@@ -855,47 +855,6 @@
                 "webtest"
             ],
             "time": "2013-10-04 15:03:51"
-        },
-        {
-            "name": "jakoch/phantomjs-installer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jakoch/phantomjs-installer.git",
-                "reference": "6e3859dd2a3911e5d786f79214d5d5e76c09b8f2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jakoch/phantomjs-installer/zipball/6e3859dd2a3911e5d786f79214d5d5e76c09b8f2",
-                "reference": "6e3859dd2a3911e5d786f79214d5d5e76c09b8f2",
-                "shasum": ""
-            },
-            "require": {
-                "ext-openssl": "*"
-            },
-            "type": "custom-installer",
-            "autoload": {
-                "psr-0": {
-                    "PhantomInstaller\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jens-André Koch",
-                    "email": "jakoch@web.de"
-                }
-            ],
-            "description": "A Composer package which installs the PhantomJS binary (Linux, Windows, Mac) into `/bin` of your project.",
-            "keywords": [
-                "binaries",
-                "headless",
-                "phantomjs"
-            ],
-            "time": "2014-07-26 19:26:32"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2395,9 +2354,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "jakoch/phantomjs-installer": 20
-    },
+    "stability-flags": [
+
+    ],
     "prefer-stable": false,
     "platform": [
 
