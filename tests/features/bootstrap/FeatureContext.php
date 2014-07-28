@@ -95,12 +95,30 @@ class FeatureContext extends MinkContext
     }
 
     /**
-     * @Then /^I should only see the (\d+)(?:st|nd|rd|th) slide/
+     * @Then /^I should see the (\d+)(?:st|nd|rd|th) slide/
      */
-    public function iShouldOnlySeeTheNthSlide($n)
+    public function iShouldSeeTheNthSlide($n)
     {
-        // @todo implement
-        throw new PendingException();
+        $activeSlideId = 'slide-' . ($n - 1); // slides are zero-indexed.
+        $slides = $this->getSession()->getPage()->findAll('css', '.slide');
+        if (! $slides) {
+            throw new Exception("Couldn't find any slides on the page.");
+        }
+        $activeSlideFound = false;
+        foreach ($slides as $slide) {
+            $currentSlideId = $slide->getAttribute('id');
+
+            if ($currentSlideId === $activeSlideId) {
+                $activeSlideFound = true;
+                if (! $slide->isVisible()) {
+                    throw new Exception(sprintf("The %d. slide should be visible, but it is not.", $n));
+                }
+            }
+        }
+
+        if (! $activeSlideFound) {
+            throw new Exception (sprintf("The %d. slide does not exist on page.", $n));
+        }
     }
 
     /**
@@ -109,6 +127,7 @@ class FeatureContext extends MinkContext
     public function iPressTheRightKey()
     {
         $this->pressKeyOnPage(39);
+        sleep(1); // wait out transition
     }
 
     /**
@@ -117,6 +136,7 @@ class FeatureContext extends MinkContext
     public function iPressTheLeftKey()
     {
         $this->pressKeyOnPage(37);
+        sleep(1); // wait out transition
 
     }
 
