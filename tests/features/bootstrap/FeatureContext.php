@@ -10,6 +10,9 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
+require_once 'PHPUnit/Autoload.php';
+require_once 'PHPUnit/Framework/Assert/Functions.php';
+
 use Behat\MinkExtension\Context\MinkContext;
 
 /**
@@ -93,4 +96,23 @@ class FeatureContext extends MinkContext
             }
         }
     }
+
+    /**
+     * @Then /^I should only see the (\d+)(?:st|nd|rd|th) slide/
+     */
+    public function iShouldOnlySeeTheNthSlide($n)
+    {
+        // @todo implement
+        throw new PendingException();
+    }
+
+    /**
+     * @When /^I press the "([^"]*)" key$/
+     */
+    public function iPressTheKey($key)
+    {
+        // @todo implement
+        throw new PendingException();
+    }
+
 }
