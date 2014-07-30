@@ -48,9 +48,39 @@ these technologies and some real-world examples to start from.
 
 # Behat Feature File
 
+```behat
+Feature: Slide 0
+  In order to be effective the slideshow has to start
+  with Slide 0 and show
+  summary and author information
+
+  Background:
+    Given I am on the home page
+
+  Scenario: View Authors
+    Then I should see "Stefan Topfstedt"
+    And I should see "Jon Johnson"
+```
+
 ---
 
 # Behat FeatureContext File
+
+```php
+
+/**
+ * @Given /^I am on the home page$/
+ */
+public function iAmOnTheHomePage ()
+{
+    $this->visit("/");
+    $context = $this;
+    $this->spin(function($context) {
+        return (count($context->getSession()
+            ->getPage()->findById('source')) > 0);
+    });
+}
+```
 
 ---
 

@@ -68,7 +68,8 @@ class FeatureContext extends MinkContext
         $this->visit("/");
         $context = $this;
         $this->spin(function($context) {
-            return (count($context->getSession()->getPage()->findById('slide-0')) > 0);
+            return (count($context->getSession()
+                ->getPage()->findById('source')) > 0);
         });
     }
 
