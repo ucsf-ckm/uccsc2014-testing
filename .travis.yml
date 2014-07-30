@@ -39,4 +39,4 @@ install:
 - composer install  --no-interaction -d ${TRAVIS_BUILD_DIR}
 
 script:
-- ${TRAVIS_BUILD_DIR}/bin/behat -c ${TRAVIS_BUILD_DIR}/tests/behat.yml --profile $BEHAT_PROFILE
+- if [ "$SAUCE_ACCESS_KEY" ] ; then (${TRAVIS_BUILD_DIR}/bin/behat -c ${TRAVIS_BUILD_DIR}/tests/behat.yml --profile $BEHAT_PROFILE); fi
