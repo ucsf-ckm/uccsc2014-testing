@@ -1,0 +1,5 @@
+.split {
+  width: 100%; }
+  .split .box {
+    width: 50%;
+    float: left; }
