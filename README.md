@@ -6,7 +6,7 @@ This uses [deck.js](http://imakewebthings.github.com/deck.js/docs). All the acti
 
 ## This presentation demonstrates itself
 
-In order to demonstrate the integrations we wrote some very easy tests against this presentation.  If you clone this repository you can run these tests for yourself.
+In order to demonstrate the integrations, we wrote some very easy tests against this presentation.  If you clone this repository, you can run these tests for yourself.
 
 ### Installation
 1. Install Composer. See http://getcomposer.org/doc/00-intro.md for instructions.
@@ -16,7 +16,7 @@ In order to demonstrate the integrations we wrote some very easy tests against t
 
 ### Run tests
 
-You now need to setup your sauceusername and accesskey.  These can be found at https://saucelabs.com/account.
+You now need to setup your Sauce username and access key.  These can be found at https://saucelabs.com/account.
 
     export SAUCE_USERNAME=<username>
     export SAUCE_ACCESS_KEY=<accesskey>
@@ -26,7 +26,7 @@ And then do the same thing to configure sauce connect:
     bin/sauce_config <username> <accesskey>
 
 It is now possible to use sauce to test in many different browsers.  A listing of available setups can be found in `tests/behat.yml`.
-here are some examples:
+Here are some examples:
 
 1. Windows 7 IE9
 
