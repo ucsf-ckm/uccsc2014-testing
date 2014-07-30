@@ -93,4 +93,61 @@ class FeatureContext extends MinkContext
             }
         }
     }
+
+    /**
+     * @Then /^I should see the (\d+)(?:st|nd|rd|th) slide/
+     */
+    public function iShouldSeeTheNthSlide($n)
+    {
+        $activeSlideId = 'slide-' . ($n - 1); // slides are zero-indexed.
+        $slides = $this->getSession()->getPage()->findAll('css', '.slide');
+        if (! $slides) {
+            throw new Exception("Couldn't find any slides on the page.");
+        }
+        $activeSlideFound = false;
+        foreach ($slides as $slide) {
+            $currentSlideId = $slide->getAttribute('id');
+
+            if ($currentSlideId === $activeSlideId) {
+                $activeSlideFound = true;
+                if (! $slide->isVisible()) {
+                    throw new Exception(sprintf("The %d. slide should be visible, but it is not.", $n));
+                }
+            }
+        }
+
+        if (! $activeSlideFound) {
+            throw new Exception (sprintf("The %d. slide does not exist on page.", $n));
+        }
+    }
+
+    /**
+     * @When /^I press the right key$/
+     */
+    public function iPressTheRightKey()
+    {
+        $this->pressKeyOnPage(39);
+        sleep(1); // wait out transition
+    }
+
+    /**
+     * @When /^I press the left key$/
+     */
+    public function iPressTheLeftKey()
+    {
+        $this->pressKeyOnPage(37);
+        sleep(1); // wait out transition
+
+    }
+
+    /**
+     * Press a key on the page using jQuery.
+     * @param int $keyCode The code of the key to press.
+     * @link http://stackoverflow.com/a/17521635/307333
+     */
+    private function pressKeyOnPage($keyCode)
+    {
+        $script = "jQuery(document).trigger(jQuery.Event('keydown', { which: ${keyCode}, keyCode: ${keyCode}}));";
+        $this->getSession()->evaluateScript($script);
+    }
 }

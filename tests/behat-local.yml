@@ -1,0 +1,22 @@
+# default profile for local testing.
+default:
+  extensions:
+    Behat\MinkExtension\Extension:
+      base_url: http://localhost:8000
+      default_session: goutte
+      javascript_session: selenium2
+      browser_name: "firefox"
+      goutte: ~
+      selenium2:
+        capabilities: { "browser": "firefox", "version": "26" }
+  filters:
+    # don't process scenarios and features tagged as "ignored"
+    tags: '~@ignored'
+
+
+# Use this profile to run all tests in the browser (Firefox)
+browser:
+  extensions:
+    Behat\MinkExtension\Extension:
+      default_session: selenium2
+
