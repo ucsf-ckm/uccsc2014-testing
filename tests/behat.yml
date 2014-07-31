@@ -4,7 +4,7 @@ default:
         tags: "~@ignore"
     extensions:
         Behat\MinkExtension\Extension:
-            base_url: http://ucsf-ckm.github.io/uccsc2014-testing/
+            base_url: http://localtest:8000
             default_session: saucelabs
             javascript_session: saucelabs
             saucelabs:

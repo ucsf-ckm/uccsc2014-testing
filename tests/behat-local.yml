@@ -11,7 +11,7 @@ default:
         capabilities: { "browser": "firefox", "version": "26" }
   filters:
     # don't process scenarios and features tagged as "ignored"
-    tags: '~@ignored'
+    tags: '~@ignore'
 
 
 # Use this profile to run all tests in the browser (Firefox)
@@ -19,4 +19,3 @@ browser:
   extensions:
     Behat\MinkExtension\Extension:
       default_session: selenium2
-

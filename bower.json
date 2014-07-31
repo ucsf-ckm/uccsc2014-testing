@@ -2,6 +2,7 @@
   "name": "Presentation",
   "private": true,
   "dependencies": {
-      "remark": "*"
+      "remark": "*",
+      "jquery": "*"
   }
 }

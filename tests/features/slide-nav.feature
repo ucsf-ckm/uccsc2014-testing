@@ -6,6 +6,7 @@ Feature: Slide Navigation
   Background:
     Given I am on the home page
 
+  @ignore
   Scenario: Advance to next slide
     Then I should see the 1st slide
     When I press the right key
@@ -13,6 +14,7 @@ Feature: Slide Navigation
     When I press the right key
     Then I should see the 3rd slide
 
+  @ignore
   Scenario: Revert to previous slide
     And I press the right key
     And I press the right key
