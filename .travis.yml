@@ -12,14 +12,10 @@ matrix:
   fast_finish: true
   allow_failures:
   - env: BEHAT_PROFILE='osxsafari'
-  exclude:
-  - php: '5.4'
-  include:
-  - php: '5.4'
-    env: BEHAT_PROFILE='win7ie9'
+
 php:
 - '5.4'
-- '5.3'
+
 env:
   global:
   - SAUCE_USERNAME="ilios"
@@ -27,16 +23,22 @@ env:
   - secure: TWX+vAZYyU+m4Eur8Eyuo39feAU/8sCVqoW3QLdmP0umGSaOHxrTrQuX4lGNUOV1nLMedAQl/7FVryl4eBJwhth8iQ9xjDIdRCshN+lvQfEGB6D91FrgJ7ZoR/QnKxcHddFzaGXAlglVZE8JT5Ljp36tyKbbNoEt0YBgwSnYxW0=
 
   matrix:
+  - BEHAT_PROFILE='default'
   - BEHAT_PROFILE='win7ie9'
   - BEHAT_PROFILE='win8ie11'
   - BEHAT_PROFILE='osxsafari'
+
 addons:
   hosts:
-  - precise64
+  - localtest
   sauce_connect: true
 
 install:
 - composer install  --no-interaction -d ${TRAVIS_BUILD_DIR}
+
+before_script:
+- php -S 0.0.0.0:8000 -t ${TRAVIS_BUILD_DIR} > /dev/null &
+- sleep 3
 
 script:
 - if [ "$SAUCE_ACCESS_KEY" ] ; then (${TRAVIS_BUILD_DIR}/bin/behat -c ${TRAVIS_BUILD_DIR}/tests/behat.yml --profile $BEHAT_PROFILE); fi

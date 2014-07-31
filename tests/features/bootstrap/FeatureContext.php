@@ -68,7 +68,8 @@ class FeatureContext extends MinkContext
         $this->visit("/");
         $context = $this;
         $this->spin(function($context) {
-            return (count($context->getSession()->getPage()->findById('slide-0')) > 0);
+            return (count($context->getSession()
+                ->getPage()->findById('source')) > 0);
         });
     }
 
@@ -77,7 +78,7 @@ class FeatureContext extends MinkContext
      * This should work with any of the selenium2 drivers incuding phantomjs
      *
      * It outputs the file location above the failed step.
-     * @todo find a better way to techo the path to the console.
+     * @todo find a better way to echo the path to the console.
      * @AfterStep
      */
     public function takeScreenshotAfterFailedStep($event)
@@ -99,16 +100,14 @@ class FeatureContext extends MinkContext
      */
     public function iShouldSeeTheNthSlide($n)
     {
-        $activeSlideId = 'slide-' . ($n - 1); // slides are zero-indexed.
-        $slides = $this->getSession()->getPage()->findAll('css', '.slide');
+        $activeSlideId = ($n - 1);
+        $slides = $this->getSession()->getPage()->findAll('css', '.remark-slide-container');
         if (! $slides) {
             throw new Exception("Couldn't find any slides on the page.");
         }
         $activeSlideFound = false;
-        foreach ($slides as $slide) {
-            $currentSlideId = $slide->getAttribute('id');
-
-            if ($currentSlideId === $activeSlideId) {
+        foreach ($slides as $i => $slide) {
+            if ($i == $activeSlideId AND $slide->hasClass('remark-visible')) {
                 $activeSlideFound = true;
                 if (! $slide->isVisible()) {
                     throw new Exception(sprintf("The %d. slide should be visible, but it is not.", $n));

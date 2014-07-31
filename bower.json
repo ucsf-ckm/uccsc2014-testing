@@ -2,9 +2,7 @@
   "name": "Presentation",
   "private": true,
   "dependencies": {
-      "deck.js": "*",
-      "bourbon": "*",
-      "neat": "*",
-      "bitters": "*"
+      "remark": "*",
+      "jquery": "*"
   }
 }
