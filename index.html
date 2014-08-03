@@ -9,7 +9,6 @@
     <textarea id="source">
 
 class: center, middle
-
 # Testing in the cloud
 
 >Test your application or website in every browser for free while you have coffee.
@@ -17,42 +16,73 @@ class: center, middle
 .split[
 .box[
   ### Stefan Topfstedt
-  https://github.com/stopfstedt
-  stefan.topfstedt@ucsf.edu
+  https://github.com/stopfstedt  
+  @stefan667  
+  stefan.topfstedt@ucsf.edu  
 ]
 .box[
   ### Jon Johnson
-  https://github.com/jrjohnson
-  jon.johnson@ucsf.edu
+  https://github.com/jrjohnson  
+  @uopjohnson  
+  jon.johnson@ucsf.edu  
 ]
 ]
 ---
+.left-column[
+  ## Agenda
+]
 
-# Agenda
-
+.right-column[
 - Behaviour Driven Development
     - Behat/Mink/Selenium/Browsers
 - Continuous Integration
     - Github, TravisCI, SauceLabs
 
-We will walk you through this process from the basic setup to our more advanced tips and tricks.
+- We will walk you through this process from the basic setup to our more advanced tips and tricks.
 
-The best part is all of our work is open source so you can take home both an understanding of
+- The best part is all of our work is open source so you can take home both an understanding of
 these technologies and some real-world examples to start from.
+]
 
 ---
-# A Taste of the good stuff
+.left-column[
+  ## A Taste of the good stuff
+]
+.right-column[
+ ![Ilios SauceLabs Demo](media/sauce_demo.gif "Ilios Sauce Demo")
+]
 
-![Ilios SauceLabs Demo](media/sauce_demo.gif "Ilios Sauce Demo")
+???
+- We didn't want you to get bored with the details
+- This is a sample of adding a user which should throw a series of errors for incorrect input
 
 ---
+.left-column[
+## Behavior Driven Development
+]
+.right-column[
+- What is BDD?
+- What can BDD do for me?
+- How is it different from TDD?
+]
 
+---
+.left-column[
 # Behat Intro
-
+]
+.right-column[
+>Behat is a tool to close the Behavior Driven Development (BDD) communication loop.
+>BDD is a methodology for developing software through continuous example-based communication
+>between developers and a business, which this application supports. This communication happens
+>in a form that both the business and developers can clearly understand - examples.
+>
+> -- <cite>http://docs.behat.org/</cite>
+]
 ---
-
-# Behat Feature File
-
+.left-column[
+## Behat Feature File
+]
+.right-column[
 ```behat
 Feature: Slide 0
   In order to be effective the slideshow has to start
@@ -66,11 +96,16 @@ Feature: Slide 0
     Then I should see "Stefan Topfstedt"
     And I should see "Jon Johnson"
 ```
-
+]
+???
+- Feature file is plain english
+- Should be readable by anyone
+- With practice can be written by most people
 ---
-
-# Behat FeatureContext File
-
+.left-column[
+## Behat FeatureContext File
+]
+.right-column[
 ```php
 
 /**
@@ -86,18 +121,296 @@ public function iAmOnTheHomePage ()
     });
 }
 ```
+]
+???
+- You're going to get deep into this file
+- Initialy it will seem like all you are doing is writing PHP in this file, but the
+more tests you write the less you will be doing here
+
+---
+.left-column[
+## Github Introduction
+]
+
+.right-column[
+> GitHub is a Git repository web-based hosting service which offers all of
+> the functionality of Git as well as adding many of its own features.
+> Unlike Git, which is strictly a command-line tool, Github provides a
+> web-based graphical interface and desktop as well as mobile integration.
+> It also provides access control and several collaboration features such
+> as wikis, task management, and bug tracking and feature requests for
+> every project
+>
+> -- <cite>http://en.wikipedia.org/wiki/GitHub</cite>
+]
+---
+.left-column[
+## The Pull Request
+]
+
+.right-column[
+## Heart of the collaborative Github System
+
+- [Pull Requests for this presentation](https://github.com/ucsf-ckm/uccsc2014-testing/pulls)
+- [Pull Request discussions](https://github.com/ilios/ilios/pull/531)
+]
+
+???
+- What is a fork?
+- What is a pull request?
+- Features of a pull requst
+    - Code review Line by line commenting
+    - Keep updating and testing every change
+    - Checkout the whole thing and test locally
+    - Merge when its ready
+
+---
+.left-column[
+## Travis-CI
+]
+
+.right-column[
+> In software development, Travis CI is a hosted, distributed
+> continuous integration service used to build and test projects hosted at
+> GitHub. The software is also available as an open source download on
+> GitHub, although its developers do not currently recommend it for
+> on-premise use for closed projects
+>
+> -- <cite>http://en.wikipedia.org/wiki/Travis_CI</cite>
+]
+---
+.left-column[
+## Saucelabs
+]
+
+.right-column[
+![SauceLabs Platforms](media/sauce_platforms.png "Sauce Platforms")
+
+> Sauce Labs’ cloud testing platform allows you to automatically or interactively
+> test mobile and web applications on 300+ browsers and platforms.
+>
+> -- <cite>https://saucelabs.com</cite>
+]
+---
+.left-column[
+## Github+ TravisCI+ Sauce
+]
+.right-column[
+This is what the "cloud" can do for you!
+]
+
+???
+- No system administration
+- No server maintenance
+
+---
+.left-column[
+## Github+ TravisCI+ Sauce
+## Continuous Integration Made Easy
+]
+.right-column[
+
+- Will run every test against every commit on every branch
+- Will do the same thing for collaborators, so they can feel comfortable about requesting changes
+- Takes 10 seconds to setup, two weeks to get right, and then forget it.
+]
+
+???
+- Talk about typical PR process for Ilios
+    - Fork and play
+    - Test locally
+    - Commit to your own repo
+
+---
+##Simple TravisCI File
+
+```yml
+language: php
+services: mysql
+php:
+- '5.4'
+
+env:
+  global:
+  - SAUCE_USERNAME="ilios"
+  - SAUCE_ACCESS_KEY="secretkey"
+
+addons:
+  sauce_connect: true
+
+install:
+- composer install  --no-interaction -d ${TRAVIS_BUILD_DIR}
+
+before_script:
+- php -S 0.0.0.0:8000 -t ${TRAVIS_BUILD_DIR} > /dev/null &
+- sleep 3
+
+script:
+bin/behat -c tests/behat.yml --profile default
+```
+
+---
+.left-column[
+##Travis Configuration
+]
+.right-column[
+Some lessons we've learned that you don't have to.
+]
+
+---
+.left-column[
+##Travis Configuration
+##Naming your host
+]
+.right-column[
+Internet exporer on Sauce doesn't like localhost, but sauce can rename the host to whatever you want.
+
+####travis.yml
+```yml
+addons:
+  hosts:
+  - localtest
+```
+####behat.yml
+```yml
+default:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://localtest:8000
+```
+]
+---
+.left-column[
+##Travis Configuration
+##Lots of Browsers
+]
+.right-column[
+
+####travis.yml
+```yml
+matrix:
+  allow_failures:
+  - env: BEHAT_PROFILE='osxsafari'
+env:
+  matrix:
+  - BEHAT_PROFILE='default'
+  - BEHAT_PROFILE='win7ie9'
+  - BEHAT_PROFILE='win8ie11'
+  - BEHAT_PROFILE='osxsafari'
+
+script:
+- if [ "$SAUCE_ACCESS_KEY" ] ; then (${TRAVIS_BUILD_DIR}/bin/behat -c ${TRAVIS_BUILD_DIR}/tests/behat.yml --profile $BEHAT_PROFILE); fi
+
+```
+
+####behat.yml
+```yml
+win8ie11:
+    extensions:
+        Behat\MinkExtension\Extension:
+            saucelabs:
+                browser: "internet explorer"
+                capabilities:
+                    name: "win8ie11"
+                    platform: "Windows 8.1"
+                    version: 11
+```
+]
+
+???
+- Travis will just keep building your site over and over.  You can test in a ton of browsers
+and even allow some of them to fail without your entire build failing.
+- Build matrix can be HUGE
+- The 'name' in capabillities gives you an easy way to find the problem is suace
+
+---
+.left-column[
+##Travis Configuration
+##Securing your Key
+]
+.right-column[
+- Travis provides an easy way to secure you sauce labs access token.
+- Unfortuantly it breaks tests on Pull Requests.
+- We haven't had a lot of problems leaving our key in the open, but YMMV.
+]
 
 ---
 
-# Github
+.left-column[
+##Travis Configuration
+##Spliting up yoru tests
+]
+.right-column[
+
+####travis.yml
+```yml
+addons:
+  hosts:
+  - localtest
+```
+####behat.yml
+```yml
+default:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://localtest:8000
+```
+]
+---
+.left-column[
+##Travis Configuration
+##Spit your tests
+]
+.right-column[
+
+####travis.yml
+```yml
+matrix:
+    - BEHAT_PROFILE='phantomjs' BEHAT_TAG='~@ignore&&@setone'
+    - BEHAT_PROFILE='phantomjs' BEHAT_TAG='~@ignore&&@settwo'
+    - BEHAT_PROFILE='default' BEHAT_TAG='~@ignore&&@setone'
+    - BEHAT_PROFILE='default' BEHAT_TAG='~@ignore&&@settwo'
+    
+script:
+- bin/behat -c tests/behat.yml --profile $BEHAT_PROFILE
+```
+
+####behat.yml
+```behat
+@setone
+Scenario: Advance to next slide
+  Then I should see the 1st slide
+
+@settwo
+Scenario: Revert to previous slide
+  Then I should see the 3rd slide
+```
+]
+
+???
+- Sauce tests take a while to run, and Travis has a 40 minutes maximum run time.
+- Profiles and tags allow the tests to be split into parts
+- You could get mroe complicated here and group builds that are allowed to fail in certain browsers 
+or use tags to organize more specifically.
 
 ---
+# Thanks, Questions?
 
-# Travis-CI
+.split[
+.box[
+  ### Stefan Topfstedt
+  https://github.com/stopfstedt  
+  @stefan667  
+  stefan.topfstedt@ucsf.edu  
+]
+.box[
+  ### Jon Johnson
+  https://github.com/jrjohnson  
+  @uopjohnson  
+  jon.johnson@ucsf.edu  
+]
+]
 
----
-
-# Saucelabs
     </textarea>
     <script src="components/jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="components/remark/out/remark.min.js" type="text/javascript"></script>
