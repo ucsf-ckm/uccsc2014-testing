@@ -109,9 +109,3 @@ code {
   width: 75%;
   float: right;
   padding-top: 1em; }
-
-.split {
-  width: 100%; }
-  .split .box {
-    width: 50%;
-    float: left; }
