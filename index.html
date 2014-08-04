@@ -9,7 +9,7 @@
     <textarea id="source">
 
 class: center, middle
-# Testing in the cloud
+# Testing in the Cloud
 
 >Test your application or website in every browser for free while you have coffee.
 
@@ -41,9 +41,7 @@ class: center, middle
     - Behat/Mink/Selenium/Browsers
 - Continuous Integration
     - Github, TravisCI, SauceLabs
-
 - We will walk you through this process from the basic setup to our more advanced tips and tricks.
-
 - The best part is all of our work is open source so you can take home both an understanding of
 these technologies and some real-world examples to start from.
 ]
@@ -94,7 +92,7 @@ these technologies and some real-world examples to start from.
 - which leads us .. (next slide)
 ---
 .left-column[
-  ## A Taste of the good stuff
+  ## A taste of the good stuff
 ]
 .right-column[
  ![Ilios SauceLabs Demo](media/sauce_demo.gif "Ilios Sauce Demo")
@@ -116,7 +114,7 @@ these technologies and some real-world examples to start from.
 
 ---
 .left-column[
-# Behat Intro
+## Behat
 ]
 .right-column[
 >Behat is a tool to close the Behavior Driven Development (BDD) communication loop.
@@ -128,7 +126,8 @@ these technologies and some real-world examples to start from.
 ]
 ---
 .left-column[
-## Behat Feature File
+## Behat
+## Feature File
 ]
 .right-column[
 ```behat
@@ -151,7 +150,8 @@ Feature: Slide 0
 - With practice can be written by most people
 ---
 .left-column[
-## Behat FeatureContext File
+## Behat
+## FeatureContext File
 ]
 .right-column[
 ```php
@@ -177,7 +177,7 @@ more tests you write the less you will be doing here
 
 ---
 .left-column[
-## Github Introduction
+## Github 
 ]
 
 .right-column[
@@ -193,6 +193,7 @@ more tests you write the less you will be doing here
 ]
 ---
 .left-column[
+## Github 
 ## The Pull Request
 ]
 
@@ -241,7 +242,7 @@ more tests you write the less you will be doing here
 ]
 ---
 .left-column[
-## Github+ TravisCI+ Sauce
+## Github+ TravisCI+ SauceLabs
 ]
 .right-column[
 This is what the "cloud" can do for you!
@@ -253,7 +254,7 @@ This is what the "cloud" can do for you!
 
 ---
 .left-column[
-## Github+ TravisCI+ Sauce
+## Github+ TravisCI+ SauceLabs
 ## Continuous Integration Made Easy
 ]
 .right-column[
@@ -386,28 +387,7 @@ and even allow some of them to fail without your entire build failing.
 
 .left-column[
 ##Travis Configuration
-##Spliting up yoru tests
-]
-.right-column[
-
-####travis.yml
-```yml
-addons:
-  hosts:
-  - localtest
-```
-####behat.yml
-```yml
-default:
-    extensions:
-        Behat\MinkExtension\Extension:
-            base_url: http://localtest:8000
-```
-]
----
-.left-column[
-##Travis Configuration
-##Spit your tests
+##Spliting up your tests
 ]
 .right-column[
 
@@ -459,8 +439,9 @@ or use tags to organize more specifically.
 ]
 ]
 
-### http://ucsf-ckm.github.io/uccsc2014-testing/
-###https://github.com/ucsf-ckm/uccsc2014-testing
+### These Slides: http://ucsf-ckm.github.io/uccsc2014-testing
+
+### The Code: https://github.com/ucsf-ckm/uccsc2014-testing
 
     </textarea>
     <script src="components/jquery/dist/jquery.min.js" type="text/javascript"></script>
