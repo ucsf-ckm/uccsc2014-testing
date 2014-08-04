@@ -18,13 +18,13 @@ class: center, middle
   ### Stefan Topfstedt
   https://github.com/stopfstedt  
   @stefan667  
-  stefan.topfstedt@ucsf.edu  
+  stefan.topfstedt@ucsf.edu
 ]
 .box[
   ### Jon Johnson
   https://github.com/jrjohnson  
   @uopjohnson  
-  jon.johnson@ucsf.edu  
+  jon.johnson@ucsf.edu
 ]
 ]
 ---
@@ -43,7 +43,51 @@ class: center, middle
 - The best part is all of our work is open source so you can take home both an understanding of
 these technologies and some real-world examples to start from.
 ]
-
+---
+.left-column[
+##But first...]
+.right-column[
+![Let's back up for a moment](media/truck_backing_up.jpg "Le'ts back up for a moment")
+]
+???
+- Before we get to the technical stuff - why are we doing this?
+- Consider this [next slide]
+---
+.left-column[
+##Web Development 2014
+]
+.right-column[
+- Rich Internet Applications
+![trello](media/trello.jpg "Trello")
+- Browser/OS fragmentation
+![browsers](media/browser_icons.jpg "Browsers")
+- Wide variety of devices/screen sizes
+![devices](media/devices.png "Devices")
+]
+???
+- various challenges with modern web development:
+- level of interactivity/sophistication of web applications has increased (JS frameworks, AJAX, HTML5)
+- user expectations are up as well
+- more browsers than ever that need to be supported (IE 8-11, mobile browsers etc)
+- smartphone, tables, personal computers  -one app different screensizes (responsive design)
+- click-testing won't do (anymore), too many variations. too costly.
+---
+.left-column[
+## Managing complexity through:
+]
+.right-column[
+- Test Automation
+- Source control management
+- Build automation
+- Self-testing builds
+]
+???
+- test automation: this includes unit tests, but not only. full end-to-end test (system tests) thru the UI needed.
+- SCM, git svn, github bitbucket. gives you version control and collaboration tool. many dev branches, one stable mainline.
+- build automation: build scripts, build server.
+- self-building tests: tests are part of the codebase and executed as part of the build
+- all of these together -> continous integration
+- which leads us .. (next slide)
 ---
 .left-column[
   ## A Taste of the good stuff
@@ -370,7 +414,7 @@ matrix:
     - BEHAT_PROFILE='phantomjs' BEHAT_TAG='~@ignore&&@settwo'
     - BEHAT_PROFILE='default' BEHAT_TAG='~@ignore&&@setone'
     - BEHAT_PROFILE='default' BEHAT_TAG='~@ignore&&@settwo'
-    
+
 script:
 - bin/behat -c tests/behat.yml --profile $BEHAT_PROFILE
 ```
@@ -390,7 +434,7 @@ Scenario: Revert to previous slide
 ???
 - Sauce tests take a while to run, and Travis has a 40 minutes maximum run time.
 - Profiles and tags allow the tests to be split into parts
-- You could get mroe complicated here and group builds that are allowed to fail in certain browsers 
+- You could get mroe complicated here and group builds that are allowed to fail in certain browsers
 or use tags to organize more specifically.
 
 ---
@@ -401,13 +445,13 @@ or use tags to organize more specifically.
   ### Stefan Topfstedt
   https://github.com/stopfstedt  
   @stefan667  
-  stefan.topfstedt@ucsf.edu  
+  stefan.topfstedt@ucsf.edu
 ]
 .box[
   ### Jon Johnson
   https://github.com/jrjohnson  
   @uopjohnson  
-  jon.johnson@ucsf.edu  
+  jon.johnson@ucsf.edu
 ]
 ]
 
