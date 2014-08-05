@@ -9,7 +9,7 @@
     <textarea id="source">
 
 class: center, middle
-# Testing in the cloud
+# Testing in the Cloud
 
 >Test your application or website in every browser for free while you have coffee.
 
@@ -27,22 +27,26 @@ class: center, middle
   jon.johnson@ucsf.edu
 ]
 ]
+
+
+### http://ucsf-ckm.github.io/uccsc2014-testing/
+
 ---
 .left-column[
-  ## Agenda
-]
+   ## Agenda
+ ]
 
 .right-column[
 - Behaviour Driven Development
-    - Behat/Mink/Selenium/Browsers
-- Continuous Integration
-    - Github, TravisCI, SauceLabs
-
-- We will walk you through this process from the basic setup to our more advanced tips and tricks.
-
-- The best part is all of our work is open source so you can take home both an understanding of
-these technologies and some real-world examples to start from.
+- Tools Overview
+- Basic Configuration
+- Advanced Tips
+ 
+The best part is all of our work is open source so you can take home both an understanding of
+ these technologies and some real-world examples to start from.
+ 
 ]
+ 
 ---
 .left-column[
 ##But first...]
@@ -90,7 +94,7 @@ these technologies and some real-world examples to start from.
 - which leads us .. (next slide)
 ---
 .left-column[
-  ## A Taste of the good stuff
+  ## A taste of the good stuff
 ]
 .right-column[
  ![Ilios SauceLabs Demo](media/sauce_demo.gif "Ilios Sauce Demo")
@@ -112,7 +116,7 @@ these technologies and some real-world examples to start from.
 
 ---
 .left-column[
-# Behat Intro
+## Behat
 ]
 .right-column[
 >Behat is a tool to close the Behavior Driven Development (BDD) communication loop.
@@ -124,7 +128,8 @@ these technologies and some real-world examples to start from.
 ]
 ---
 .left-column[
-## Behat Feature File
+## Behat
+## Feature File
 ]
 .right-column[
 ```behat
@@ -147,7 +152,8 @@ Feature: Slide 0
 - With practice can be written by most people
 ---
 .left-column[
-## Behat FeatureContext File
+## Behat
+## Feature Context File
 ]
 .right-column[
 ```php
@@ -173,7 +179,7 @@ more tests you write the less you will be doing here
 
 ---
 .left-column[
-## Github Introduction
+## Github 
 ]
 
 .right-column[
@@ -189,6 +195,7 @@ more tests you write the less you will be doing here
 ]
 ---
 .left-column[
+## Github 
 ## The Pull Request
 ]
 
@@ -237,10 +244,12 @@ more tests you write the less you will be doing here
 ]
 ---
 .left-column[
-## Github+ TravisCI+ Sauce
+## Github+ TravisCI+ SauceLabs
 ]
 .right-column[
-This is what the "cloud" can do for you!
+### This is what the "cloud" can do for you!
+
+####Hopefully a [demo](https://github.com/ucsf-ckm/uccsc2014-testing/pull/9)
 ]
 
 ???
@@ -249,7 +258,7 @@ This is what the "cloud" can do for you!
 
 ---
 .left-column[
-## Github+ TravisCI+ Sauce
+## Github+ TravisCI+ SauceLabs
 ## Continuous Integration Made Easy
 ]
 .right-column[
@@ -295,10 +304,10 @@ bin/behat -c tests/behat.yml --profile default
 
 ---
 .left-column[
-##Travis Configuration
+## Travis Configuration
 ]
 .right-column[
-Some lessons we've learned that you don't have to.
+### Some lessons we've learned that you don't have to.
 ]
 
 ---
@@ -382,28 +391,7 @@ and even allow some of them to fail without your entire build failing.
 
 .left-column[
 ##Travis Configuration
-##Spliting up yoru tests
-]
-.right-column[
-
-####travis.yml
-```yml
-addons:
-  hosts:
-  - localtest
-```
-####behat.yml
-```yml
-default:
-    extensions:
-        Behat\MinkExtension\Extension:
-            base_url: http://localtest:8000
-```
-]
----
-.left-column[
-##Travis Configuration
-##Spit your tests
+##Spliting up your tests
 ]
 .right-column[
 
@@ -434,7 +422,7 @@ Scenario: Revert to previous slide
 ???
 - Sauce tests take a while to run, and Travis has a 40 minutes maximum run time.
 - Profiles and tags allow the tests to be split into parts
-- You could get mroe complicated here and group builds that are allowed to fail in certain browsers
+- You could get more complicated here and group builds that are allowed to fail in certain browsers
 or use tags to organize more specifically.
 
 ---
@@ -454,6 +442,12 @@ or use tags to organize more specifically.
   jon.johnson@ucsf.edu
 ]
 ]
+
+### These Slides: http://ucsf-ckm.github.io/uccsc2014-testing
+
+### The Code: https://github.com/ucsf-ckm/uccsc2014-testing
+
+Slideshow created using [remark](http://github.com/gnab/remark).
 
     </textarea>
     <script src="components/jquery/dist/jquery.min.js" type="text/javascript"></script>
