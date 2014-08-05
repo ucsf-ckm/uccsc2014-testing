@@ -316,7 +316,7 @@ bin/behat -c tests/behat.yml --profile default
 ##Naming your host
 ]
 .right-column[
-Internet exporer on Sauce doesn't like localhost, but sauce can rename the host to whatever you want.
+Internet Explorer on Sauce doesn't like "localhost", but Travis can rename the host to whatever you want.
 
 ####travis.yml
 ```yml
@@ -382,8 +382,8 @@ and even allow some of them to fail without your entire build failing.
 ##Securing your Key
 ]
 .right-column[
-- Travis provides an easy way to secure you sauce labs access token.
-- Unfortuantly it breaks tests on Pull Requests.
+- Travis provides an easy way to secure your Sauce Labs access token.
+- Unfortunately it breaks tests on Pull Requests.
 - We haven't had a lot of problems leaving our key in the open, but YMMV.
 ]
 
